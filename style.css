@@ -1,0 +1,142 @@
+:root{
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.header{
+    text-align: center;
+}
+
+.header__title{
+    margin-bottom: 0;
+    font-weight: 600;
+    color: #333;
+}
+.header__sub-title{
+    margin-top: 0;
+    font-weight: 300;
+    margin-bottom: 0;
+}
+
+.main{
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    grid-gap: 20px;
+    max-width: 960px;
+    margin: auto;
+}
+
+.sub-title{
+    color: #555;
+    font-weight: 400;
+    text-align: center;
+}
+
+.register-area__title{
+    text-align: center;
+}
+
+
+.register-area__form label{
+    display: block;
+}
+
+.register-area__form label::before{
+    content:  '* ';
+    color: red;
+}
+
+.register-area__form input, .register-area__form textarea{
+    width: 100%;
+    border-radius: 5px;
+    border-style: solid;
+    padding: 10px;
+}
+
+.register-area__form textarea{    
+    resize: none;
+    height: 60px;
+}
+
+.register-area__form .button{
+    background-color: #7e73db;
+    width: 100%;
+    display: block;
+    color: #fff;
+    cursor:pointer;
+    font-weight: 600;
+}
+
+.register-area__form-group{
+    padding-bottom: 20px;
+}
+
+label.label-color::before{
+    content: '';
+}
+
+.color-input{
+    display: none;
+}
+
+label.label-color{
+    width: 30px;
+    height: 30px;
+    box-shadow: 0px 0px 5px #ccc;
+    border-radius: 3px;
+    display: inline-block;
+    margin: 10px;
+}
+.color-one{
+    background-image: linear-gradient(to right, #d8027f, #fe736a);
+}
+
+.color-two{
+    background-image: linear-gradient(to right, #7cf3dd, #0b9cfe);
+}
+
+.color-three{
+    background-image: linear-gradient(to right, #c39ff2, #7e73db);
+}
+
+input:checked + .label-color {
+    box-shadow: inset 0px 0px 10px rgba(255, 255, 255, .5);
+}
+
+.tasks{
+    padding: 20px;
+}
+
+.task{
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 15px;
+    color: #fff;
+    box-shadow: 2px 2px 5px #ccc;
+    transition:all .3seg ease ;
+    transition: all ease 2seg;
+}
+
+
+.task__header{
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
+.task__delete{
+    text-decoration: none;
+    font-weight: 600;
+    color: #fff;
+    text-align: end;
+    cursor: pointer;
+}
+
+.task__date{
+    background-color: #fff;
+    color: #333;
+    font-size: .7em;
+    padding: 5px 10px;
+    font-weight: 600;
+    border-radius: 50px;
+    display: inline;
+}

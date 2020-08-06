@@ -5,10 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <header class="header">
+        <h1 class="header__title">Todo List</h1>
+    </header>
+    <main class="main">
+        <section class="register-area">
+            <h2 class="sub-title">Registra tus tareas</h2>
+            <form action="" id="form" class="register-area__form">
+                <div class="register-area__form-group">
+                    <label class="label" for="form-title">Titulo</label>
+                    <input type="text" class="input" name="" id="form-title">
+                </div>
+                <div class="register-area__form-group">
+                    <label class="label" for="form-description">Descripcion</label>
+                    <textarea name="" id="form-description" class="input"></textarea>
+                </div>
+                <div class="register-area__form-group">
+                    <label class="label" for="">Fecha</label>
+                    <input type="date" name="" id="form-date">
+                </div>
+                <div class="register-area__form-group">
+                    <label class="label" for="">Color</label>
+                    <div id="form-colors">
+                        <input type="radio" name="form-color" id="color-one" class="color-input" value="1">
+                        <label for="color-one" class="label-color color-one"></label>
+                        <input type="radio" name="form-color" id="color-two" class="color-input" value="2">
+                        <label for="color-two" class="label-color color-two"></label>
+                        <input type="radio" name="form-color" id="color-three" class="color-input" value="3">
+                        <label for="color-three" class="label-color color-three"></label>
+                    </div>
+                </div>
+                <input type="submit" class="button" value="Registrar">
+            </form>
+        </section>
+        <section class="task-area">
+            <ul class="tasks" id="tasks">
+  
+            </ul>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
