@@ -11,10 +11,20 @@ const formValueValid = {
     coler: true
 }
 
+const eventListeners = () => {
+
 
 tasks.addEventListener("click", e => {
     if(e.target.tagName == 'SPAN'){
+        console.log(e.target.parentElement.parentElement)
+        
+        const tasksArr = Array.from(tasks.children)
+        const taskIndex = tasksArr.indexOf(e.target.parentElement.parentElement)
+        deleteTaskLocalStorage(taskIndex)
         tasks.removeChild(e.target.parentElement.parentElement)
+        
+        console.log(taskIndex)
+
     }
 })
 
@@ -22,12 +32,14 @@ form.addEventListener('submit', e => {
     e.preventDefault()
     if(validateForm()){
         const taskData = getFormData()
-        const taskDOM = generateTaskDOM(taskData)
-        if(tasks.childElementCount >= 0)
-        tasks.insertBefore(taskDOM, tasks.firstChild)
+        setTaskLocalStorage(taskData)
+        insertTaskDOM(taskData)
     }
 })
 
+addEventListener('DOMContentLoaded', loadTaksDOM)
+
+}
 
 const validateForm = () => {
     const formValues = Object.values(formValueValid)
@@ -40,10 +52,9 @@ const getFormData = () => {
     return {
         title: formTitle.value,
         description: formDescription.value,
-        color: 1
+        color: 2
     }
 }
-
 
 const generateTaskDOM = data => {
     const task = document.createElement("li");
@@ -78,3 +89,46 @@ const generateTaskDOM = data => {
     return(task)
 }
 
+const insertTaskDOM = taskData => {
+    const task = generateTaskDOM(taskData)
+    tasks.insertBefore(task, tasks.firstChild)
+}
+
+const setTaskLocalStorage = task => {
+    const tasks = getTasksLocalStorage()
+    tasks.unshift(task)
+
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+}
+
+const getTasksLocalStorage = () => {
+    let tasks;
+
+    if(localStorage.getItem('tasks') == null){
+        tasks = []
+    }else{
+        tasks = JSON.parse(localStorage.getItem('tasks'))
+    }
+
+    return tasks
+}
+
+const deleteTaskLocalStorage = id => {
+    const tasksLocalStorage = getTasksLocalStorage()
+
+    tasksLocalStorage.splice(id, 1)
+
+    localStorage.setItem('tasks', JSON.stringify(tasksLocalStorage))
+}
+
+const loadTaksDOM = () => {
+    const tasksLocalStorage = getTasksLocalStorage();
+    const fragment = document.createDocumentFragment()
+    tasksLocalStorage.forEach(task => {
+        fragment.appendChild(generateTaskDOM(task))
+    });
+    tasks.appendChild(fragment)
+
+}
+
+eventListeners()
