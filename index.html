@@ -2,52 +2,78 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <title>Tareas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo List</title>
-
+    <meta name="title" content="Aplicación gestiona tareas">
+    <meta name="description" content="Almacena las taras que debes relizar y que no se te olviden">
+    <meta name="author" content="Jhorma Malave">
+    <link rel="shortcut icon" href="./image/favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="body">
     <header class="header">
-        <h1 class="header__title">Todo List</h1>
+        <nav class="navbar">
+                <figure class="navbar__logo-area">
+                    <img src="./image/logo.svg" class="navbar__logo" alt="Logo del control de tareas">
+                </figure>
+            </div>
+            <ul class="navbar__options">
+                <li>
+                    <button class="secondary-option" id="button-delete-tasks">
+                    Borrar todo
+                    </button>
+                </li>
+                <li>
+                    <button class="button primary-button" id="button-show-form">
+                    Agregar
+                    </button>
+                </li>                   
+            </ul>
+        </nav>
     </header>
     <main class="main">
-        <section class="register-area">
-            <h2 class="sub-title">Registra tus tareas</h2>
-            <form action="" id="form" class="register-area__form">
-                <div class="register-area__form-group">
-                    <label class="label" for="form-title">Titulo</label>
-                    <input type="text" class="input" name="" id="form-title">
-                </div>
-                <div class="register-area__form-group">
-                    <label class="label" for="form-description">Descripcion</label>
-                    <textarea name="" id="form-description" class="input"></textarea>
-                </div>
-                <div class="register-area__form-group">
-                    <label class="label" for="">Fecha</label>
-                    <input type="date" name="" id="form-date">
-                </div>
-                <div class="register-area__form-group">
-                    <label class="label" for="">Color</label>
-                    <div id="form-colors">
-                        <input type="radio" name="form-color" id="color-one" class="color-input" value="1">
-                        <label for="color-one" class="label-color color-one"></label>
-                        <input type="radio" name="form-color" id="color-two" class="color-input" value="2">
-                        <label for="color-two" class="label-color color-two"></label>
-                        <input type="radio" name="form-color" id="color-three" class="color-input" value="3">
-                        <label for="color-three" class="label-color color-three"></label>
+        <div class="register-area-modal" id="modal">
+            <div class="register-area-modal__content">
+                <h2 class="sub-title">Registra tus tareas</h2>
+                <form action="" id="form" class="register-area__form">
+                    <div class="register-area__form-group">
+                        <label class="label" for="form-title">Titulo</label>
+                        <input type="text" class="input" name="" id="form-title">
+                        <p id="message-title"></p>
                     </div>
-                </div>
-                <input type="submit" class="button" value="Registrar">
-            </form>
-        </section>
-        <section class="task-area">
+                    <div class="register-area__form-group">
+                        <label class="label" for="form-description">Descripcion</label>
+                        <textarea name="" id="form-description" class="input"></textarea>
+                    </div>
+                    <div class="register-area__form-group">
+                        <label class="label" for="">Fecha</label>
+                        <input type="date" name="" id="form-date">
+                    </div>
+                    <div class="register-area__form-group">
+                        <label class="label" for="">Color</label>
+                        <div id="form-colors">
+                            <input type="radio" name="form-color" id="color-one" class="color-input" value="1">
+                            <label for="color-one" class="label-color color-one"></label>
+                            <input type="radio" name="form-color" id="color-two" class="color-input" value="2">
+                            <label for="color-two" class="label-color color-two"></label>
+                            <input type="radio" name="form-color" id="color-three" class="color-input" value="3">
+                            <label for="color-three" class="label-color color-three"></label>
+                        </div>
+                    </div>
+                    <button type="submit" class="button primary-button" >Registrar</button>
+                </form>
+            </div>
+        </div>
+        <div class="task-area">            
             <ul class="tasks" id="tasks">
   
             </ul>
-        </section>
+        </div>
     </main>
+    <footer class="footer">
+        <p>Desarrollado por <a href="https://jhormamalave.github.io/portfolio/" target="__blank" class="footer__name">Jhorma Malave</a></p>
+    </footer>
 
     <script src="script.js"></script>
 </body>

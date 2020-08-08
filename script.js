@@ -1,58 +1,35 @@
 const tasks = document.getElementById('tasks')
+const buttonShowForm = document.getElementById('button-show-form')
+const buttonDeleteTasks = document.getElementById('button-delete-tasks')
+const modal = document.getElementById('modal')
 const form = document.getElementById('form')
 const formTitle = document.getElementById('form-title')
 const formDescription = document.getElementById('form-description')
 const formDate = document.getElementById('form-date')
-const formColors = document.getElementById('form-colors')
-const formValueValid = {
-    title: true,
-    description: true,
-    date: true,
-    coler: true
-}
+const formColors = document.getElementsByName('form-color')
+
 
 const eventListeners = () => {
 
-
-tasks.addEventListener("click", e => {
-    if(e.target.tagName == 'SPAN'){
-        console.log(e.target.parentElement.parentElement)
-        
-        const tasksArr = Array.from(tasks.children)
-        const taskIndex = tasksArr.indexOf(e.target.parentElement.parentElement)
-        deleteTaskLocalStorage(taskIndex)
-        tasks.removeChild(e.target.parentElement.parentElement)
-        
-        console.log(taskIndex)
-
-    }
-})
-
-form.addEventListener('submit', e => {
-    e.preventDefault()
-    if(validateForm()){
-        const taskData = getFormData()
-        setTaskLocalStorage(taskData)
-        insertTaskDOM(taskData)
-    }
-})
-
-addEventListener('DOMContentLoaded', loadTaksDOM)
+    addEventListener('DOMContentLoaded', loadTaksDOM)
+    tasks.addEventListener("click", deleteTask)
+    buttonDeleteTasks.addEventListener('click', deleteTasks)
+    buttonShowForm.addEventListener('click', showRegisterModal)
+    modal.addEventListener('click', closeModal)
+    form.addEventListener('submit', submitForm)
 
 }
 
-const validateForm = () => {
-    const formValues = Object.values(formValueValid)
-    const valid = formValues.findIndex(value => value == false)
-    if(valid == -1) return 1
-    else return 0
-}
 
 const getFormData = () => {
+    const formColorsArray = Array.from(formColors)
+    const formColor = parseInt(formColorsArray.find(color => color.checked).value)
+
     return {
         title: formTitle.value,
         description: formDescription.value,
-        color: 2
+        date: formDate.value.split('-'),
+        color: formColor
     }
 }
 
@@ -78,12 +55,13 @@ const generateTaskDOM = data => {
         <span class="task__delete" href="#">x</span>
     </div>
     <div class="task__body">
-        <p class="task__date">
-            20 / 01 / 1999
-        </p>
         <p class="task__description">
             ${data.description}
         </p>
+        <p class="task__date">
+            ${data.date[2]} / ${data.date[1]} / ${data.date[0]}
+        </p>
+        
     </div>`
 
     return(task)
@@ -103,13 +81,11 @@ const setTaskLocalStorage = task => {
 
 const getTasksLocalStorage = () => {
     let tasks;
-
     if(localStorage.getItem('tasks') == null){
         tasks = []
     }else{
         tasks = JSON.parse(localStorage.getItem('tasks'))
     }
-
     return tasks
 }
 
@@ -121,6 +97,7 @@ const deleteTaskLocalStorage = id => {
     localStorage.setItem('tasks', JSON.stringify(tasksLocalStorage))
 }
 
+// EventListeners
 const loadTaksDOM = () => {
     const tasksLocalStorage = getTasksLocalStorage();
     const fragment = document.createDocumentFragment()
@@ -129,6 +106,39 @@ const loadTaksDOM = () => {
     });
     tasks.appendChild(fragment)
 
+}
+
+const deleteTask = e => {
+    if(e.target.tagName == 'SPAN'){        
+        const tasksArr = Array.from(tasks.children)
+        const taskIndex = tasksArr.indexOf(e.target.parentElement.parentElement)
+        deleteTaskLocalStorage(taskIndex)
+        tasks.removeChild(e.target.parentElement.parentElement)
+    }
+}
+
+const deleteTasks = () => {
+    localStorage.clear('tasks')
+    tasks.innerHTML = ''
+}
+
+const showRegisterModal = () => {
+    modal.classList.add('register-area-modal--show')
+}
+
+const closeModal = e => {
+    if (e.target.classList.contains('register-area-modal')) {
+        modal.classList.remove('register-area-modal--show')
+    }
+}
+
+const submitForm = e => {
+    e.preventDefault()
+    if(true){ // Comprovar que todo este correcto
+        const taskData = getFormData()
+        setTaskLocalStorage(taskData)
+        insertTaskDOM(taskData)
+    }
 }
 
 eventListeners()

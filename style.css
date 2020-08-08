@@ -1,10 +1,76 @@
 :root{
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
+    background-color: #f2f2f2;
+    --primary-color: #d8027f;
+    --secondary-color: #fe736a;
 }
+
+.body{
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr;
+    justify-content: space-between;
+    height: 100vh;
+}
+
 
 .header{
     text-align: center;
+    background-color: #fff;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar__logo-area{
+    margin: 0 15px;
+}
+
+.navbar__logo{
+    height: 5em;
+}
+
+.navbar__options{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0 15px;
+}
+
+.secondary-option{
+    border: none;
+    color: #333;
+    background: none;
+    cursor:pointer;
+    font-weight: 300;
+}
+
+.primary-button{
+    background-color: #d8027f;
+}
+
+.button{
+    color: #fff;
+    border: none;
+    padding: 10px 25px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight: 600;
+}
+
+.button:hover{
+    background-color: #fe736a;
+}
+
+.secondary-option:hover{
+    color: #fe736a;
+    
 }
 
 .header__title{
@@ -18,24 +84,54 @@
     margin-bottom: 0;
 }
 
-.main{
-    display: grid;
-    grid-template-columns: 2fr 3fr;
-    grid-gap: 20px;
-    max-width: 960px;
-    margin: auto;
-}
+
 
 .sub-title{
     color: #555;
     font-weight: 400;
+    padding-top: 20px;
     text-align: center;
+}
+
+.register-area-modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    transform: scale(0);
+    background-color: rgba(0, 0, 0, .4);
+}
+
+.register-area-modal__content{
+    width: 90%;
+    max-width: 500px;
+    
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 2px 2px 5px #555;
+}
+
+.register-area-modal--show{
+    transform: scale(1);
 }
 
 .register-area__title{
     text-align: center;
 }
 
+.sub-title{
+    margin-top: 0;
+    font-weight: 600;
+}
+
+.register-area__form{
+    padding: 20px;
+}
 
 .register-area__form label{
     display: block;
@@ -46,11 +142,16 @@
     color: red;
 }
 
+.register-area__form input:nth-child(0){
+    border-color: red;
+    background-color: royalblue;
+}
+
 .register-area__form input, .register-area__form textarea{
     width: 100%;
     border-radius: 5px;
     border-style: solid;
-    padding: 10px;
+    padding: 10px 0;
 }
 
 .register-area__form textarea{    
@@ -58,14 +159,7 @@
     height: 60px;
 }
 
-.register-area__form .button{
-    background-color: #7e73db;
-    width: 100%;
-    display: block;
-    color: #fff;
-    cursor:pointer;
-    font-weight: 600;
-}
+
 
 .register-area__form-group{
     padding-bottom: 20px;
@@ -100,27 +194,40 @@ label.label-color{
 }
 
 input:checked + .label-color {
-    box-shadow: inset 0px 0px 10px rgba(255, 255, 255, .5);
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
 .tasks{
-    padding: 20px;
+    display: grid;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
+    padding: 2rem;
+    grid-gap: 20px;
+    grid-auto-flow: dense;
+    list-style: none;
 }
 
 .task{
     padding: 20px;
-    margin: 20px 0;
+    width: 90%;
     border-radius: 15px;
     color: #fff;
     box-shadow: 2px 2px 5px #ccc;
-    transition:all .3seg ease ;
-    transition: all ease 2seg;
+    cursor: pointer;
 }
 
+.task:hover{
+    position: relative;
+    bottom: 10px;
+}
 
 .task__header{
     display: grid;
     grid-template-columns: 1fr auto;
+}
+
+.task__title{
+    margin-bottom: 0;
 }
 
 .task__delete{
@@ -139,4 +246,14 @@ input:checked + .label-color {
     font-weight: 600;
     border-radius: 50px;
     display: inline;
+}
+
+.footer{
+    background-color: #fff;
+    padding: 15px;
+    text-align: center;
+}
+
+.footer__name{
+    color: #d8027f;
 }
